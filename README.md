@@ -6,7 +6,7 @@
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green)](https://chrome.google.com/webstore)
 [![GitHub Stars](https://img.shields.io/github/stars/Ashutosh-Sharma-IN/linkedin-feed-filter?style=social)](https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter)
 
-**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore) · [☕ Buy Me a Coffee](https://www.buymeacoffee.com/ashutoshsharma)**
+**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore) · [🇮🇳 Support via UPI](https://rzp.io/l/lff-support)**
 
 ---
 
@@ -108,7 +108,7 @@ Quick contribution loop:
 
 - 💬 [Give feedback or suggest a filter](https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter/issues/new?template=feedback.md)
 - 🐛 [Report a bug](https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter/issues/new?template=bug_report.md)
-- ☕ [Buy me a coffee](https://www.buymeacoffee.com/ashutoshsharma)
+- ☕ [Buy me a coffee](https://rzp.io/l/lff-support)
 - 📧 [cherry.cheeku@gmail.com](mailto:cherry.cheeku@gmail.com)
 
 ---
