@@ -1,0 +1,6 @@
+.lff-collapsed {
+  transition: background 0.2s ease;
+}
+.lff-collapsed:hover {
+  background: #e8e7e3 !important;
+}

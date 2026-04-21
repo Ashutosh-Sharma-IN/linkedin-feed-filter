@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Feed Filter</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="header">
+    <img src="../icons/icon48.png" width="32" height="32" style="border-radius:50%" alt="logo" />
+    <div>
+      <div class="title">LinkedIn Feed Filter</div>
+      <div class="subtitle" id="stats-line">Loading...</div>
+    </div>
+  </div>
+
+  <div class="section-label">CORE FILTERS</div>
+
+  <div class="filter-list" id="filter-list">
+    <!-- Rendered by JS -->
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">DISPLAY</div>
+  <label class="toggle-row">
+    <span class="toggle-label">Collapse instead of hide</span>
+    <label class="switch">
+      <input type="checkbox" id="toggle-collapse" />
+      <span class="slider"></span>
+    </label>
+  </label>
+
+  <div class="divider"></div>
+
+  <div class="section-label">CUSTOM FILTERS</div>
+
+  <div class="input-row">
+    <input type="text" id="custom-word-input" placeholder="Block a word or phrase..." />
+    <button id="add-word-btn">Add</button>
+  </div>
+  <div class="tag-list" id="custom-words-list"></div>
+
+  <div class="input-row" style="margin-top:8px">
+    <input type="text" id="block-account-input" placeholder="Block account (name or handle)..." />
+    <button id="block-account-btn">Block</button>
+  </div>
+  <div class="tag-list" id="blocked-accounts-list"></div>
+
+  <div class="divider"></div>
+
+  <div class="divider"></div>
+
+  <div class="pro-banner" id="pro-banner">
+    <div class="pro-banner-text">
+      <strong>LinkedIn Feed Filter Pro</strong>
+      <span>AI scoring · regex filters · analytics</span>
+    </div>
+    <a href="https://lff.lemonsqueezy.com" target="_blank" class="pro-btn">Upgrade →</a>
+  </div>
+
+  <div class="footer">
+    <a href="https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter/issues/new?template=feedback.md" target="_blank">💬 Feedback</a>
+    &nbsp;·&nbsp;
+    <a href="https://ashutosh-sharma-in.github.io/linkedin-feed-filter/privacy.html" target="_blank">Privacy</a>
+    &nbsp;·&nbsp;
+    <a href="https://ashutosh-sharma-in.github.io/linkedin-feed-filter/terms.html" target="_blank">Terms</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.buymeacoffee.com/ashutoshsharma" target="_blank">☕</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
