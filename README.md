@@ -6,7 +6,7 @@
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green)](https://chrome.google.com/webstore)
 [![GitHub Stars](https://img.shields.io/github/stars/Ashutosh-Sharma-IN/linkedin-feed-filter?style=social)](https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter)
 
-**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore) · [🇮🇳 Support via UPI](https://rzp.io/l/lff-support)**
+**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore) · [☕ Support this project](https://rzp.io/l/lff-support)**
 
 ---
 
@@ -78,7 +78,7 @@ legal/                 Canonical privacy policy + terms of service
 
 ## Pricing
 
-| | Free | Pro (₹299/mo) | Team (₹199/seat/mo) |
+| | Free | Pro ($3/mo) | Team ($2/seat/mo) |
 |---|---|---|---|
 | Core 5 filters | ✓ | ✓ | ✓ |
 | Custom words & accounts | ✓ | ✓ | ✓ |
