@@ -3,10 +3,10 @@
 > A free, open-source Chrome extension that silently filters low-quality posts from your LinkedIn feed. Runs 100% locally — no data ever leaves your browser.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green)](https://chrome.google.com/webstore)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green)](https://chrome.google.com/webstore/detail/linkedin-feed-filter/opajafchlmemihhchimkldhkpeeofjcn)
 [![GitHub Stars](https://img.shields.io/github/stars/Ashutosh-Sharma-IN/linkedin-feed-filter?style=social)](https://github.com/Ashutosh-Sharma-IN/linkedin-feed-filter)
 
-**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore) · [☕ Support this project](https://rzp.io/rzp/o63uXOP)**
+**[🌐 Website](https://ashutosh-sharma-in.github.io/linkedin-feed-filter) · [📦 Install from Chrome Web Store](https://chrome.google.com/webstore/detail/linkedin-feed-filter/opajafchlmemihhchimkldhkpeeofjcn) · [☕ Support this project](https://rzp.io/rzp/o63uXOP)**
 
 ---
 
@@ -29,7 +29,7 @@
 ## Install (3 ways)
 
 ### Option A — Chrome Web Store (recommended)
-*(link coming soon — currently in review)*
+*
 
 ### Option B — Load unpacked (for developers / early testers)
 
