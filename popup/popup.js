@@ -8,6 +8,8 @@ const FILTER_LABELS = {
   eventRegurgitation: 'News / event regurgitation',
 };
 
+const SECONDS_PER_POST = 18;
+
 let settings = null;
 
 async function getSettings() {
@@ -21,7 +23,7 @@ async function getSettings() {
         customWords: data.customWords || [],
         blockedAccounts: data.blockedAccounts || [],
         customPatterns: data.customPatterns || [],
-        stats: data.stats || { totalFiltered: 0, byFilter: {}, sessionFiltered: 0 },
+        stats: data.stats || { totalFiltered: 0, byFilter: {}, dailyBuckets: {} },
         collapseInstead: data.collapseInstead || false,
       });
     });
@@ -29,17 +31,47 @@ async function getSettings() {
 }
 
 async function saveSettings(patch) {
-  return new Promise(resolve => {
-    chrome.storage.sync.set(patch, resolve);
-  });
+  return new Promise(resolve => chrome.storage.sync.set(patch, resolve));
 }
 
 function notifyContentScript() {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    if (tabs[0]) {
-      chrome.tabs.sendMessage(tabs[0].id, { type: 'SETTINGS_UPDATED' }).catch(() => {});
-    }
+    if (tabs[0]) chrome.tabs.sendMessage(tabs[0].id, { type: 'SETTINGS_UPDATED' }).catch(() => {});
   });
+}
+
+function todayKey() { return new Date().toISOString().slice(0, 10); }
+
+function yesterdayKey() {
+  const d = new Date(); d.setDate(d.getDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
+
+function computeStats(stats) {
+  const buckets = stats.dailyBuckets || {};
+  const last24h = (buckets[todayKey()]?.total || 0) + (buckets[yesterdayKey()]?.total || 0);
+  const last7d = Object.values(buckets).reduce((s, b) => s + (b.total || 0), 0);
+  return { last24h, last7d, allTime: stats.totalFiltered || 0 };
+}
+
+function formatTime(seconds) {
+  if (seconds < 60) return `${seconds}s`;
+  const m = Math.floor(seconds / 60);
+  if (m < 60) return `${m} min`;
+  const h = Math.floor(m / 60), rem = m % 60;
+  return rem > 0 ? `${h}h ${rem}m` : `${h}h`;
+}
+
+function renderStats(stats) {
+  const { last24h, last7d, allTime } = computeStats(stats);
+  document.getElementById('stat-24h').textContent = last24h;
+  document.getElementById('stat-7d').textContent = last7d;
+  document.getElementById('stat-time').textContent = formatTime(last7d * SECONDS_PER_POST);
+
+  const subtitle = allTime === 0
+    ? 'Active — waiting for LinkedIn posts'
+    : `${allTime.toLocaleString()} posts filtered all time`;
+  document.getElementById('stats-line').textContent = subtitle;
 }
 
 function renderFilters(enabledFilters, stats) {
@@ -87,12 +119,7 @@ function renderTags(containerId, items, onRemove) {
 async function init() {
   settings = await getSettings();
 
-  // Stats line
-  const total = settings.stats.totalFiltered || 0;
-  document.getElementById('stats-line').textContent =
-    total > 0 ? `${total} posts filtered total` : 'No posts filtered yet';
-
-  // Filters
+  renderStats(settings.stats);
   renderFilters(settings.enabledFilters, settings.stats);
 
   // Collapse toggle
@@ -105,12 +132,13 @@ async function init() {
   });
 
   // Custom words
-  renderTags('custom-words-list', settings.customWords, async (word) => {
+  const refreshWords = () => renderTags('custom-words-list', settings.customWords, async (word) => {
     settings.customWords = settings.customWords.filter(w => w !== word);
     await saveSettings({ customWords: settings.customWords });
-    renderTags('custom-words-list', settings.customWords, arguments.callee);
+    refreshWords();
     notifyContentScript();
   });
+  refreshWords();
 
   document.getElementById('add-word-btn').addEventListener('click', async () => {
     const input = document.getElementById('custom-word-input');
@@ -119,26 +147,22 @@ async function init() {
     input.value = '';
     settings.customWords.push(word);
     await saveSettings({ customWords: settings.customWords });
-    renderTags('custom-words-list', settings.customWords, async (w) => {
-      settings.customWords = settings.customWords.filter(x => x !== w);
-      await saveSettings({ customWords: settings.customWords });
-      renderTags('custom-words-list', settings.customWords, () => {});
-      notifyContentScript();
-    });
+    refreshWords();
     notifyContentScript();
   });
 
-  document.getElementById('custom-word-input').addEventListener('keydown', (e) => {
+  document.getElementById('custom-word-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('add-word-btn').click();
   });
 
   // Blocked accounts
-  renderTags('blocked-accounts-list', settings.blockedAccounts, async (handle) => {
+  const refreshAccounts = () => renderTags('blocked-accounts-list', settings.blockedAccounts, async (handle) => {
     settings.blockedAccounts = settings.blockedAccounts.filter(a => a !== handle);
     await saveSettings({ blockedAccounts: settings.blockedAccounts });
-    renderTags('blocked-accounts-list', settings.blockedAccounts, arguments.callee);
+    refreshAccounts();
     notifyContentScript();
   });
+  refreshAccounts();
 
   document.getElementById('block-account-btn').addEventListener('click', async () => {
     const input = document.getElementById('block-account-input');
@@ -147,16 +171,11 @@ async function init() {
     input.value = '';
     settings.blockedAccounts.push(handle);
     await saveSettings({ blockedAccounts: settings.blockedAccounts });
-    renderTags('blocked-accounts-list', settings.blockedAccounts, async (h) => {
-      settings.blockedAccounts = settings.blockedAccounts.filter(x => x !== h);
-      await saveSettings({ blockedAccounts: settings.blockedAccounts });
-      renderTags('blocked-accounts-list', settings.blockedAccounts, () => {});
-      notifyContentScript();
-    });
+    refreshAccounts();
     notifyContentScript();
   });
 
-  document.getElementById('block-account-input').addEventListener('keydown', (e) => {
+  document.getElementById('block-account-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('block-account-btn').click();
   });
 }

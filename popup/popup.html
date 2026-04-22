@@ -15,11 +15,26 @@
     </div>
   </div>
 
-  <div class="section-label">CORE FILTERS</div>
-
-  <div class="filter-list" id="filter-list">
-    <!-- Rendered by JS -->
+  <!-- Stats cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="stat-24h">—</div>
+      <div class="stat-label">posts filtered<br/>last 24h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="stat-7d">—</div>
+      <div class="stat-label">posts filtered<br/>last 7 days</div>
+    </div>
+    <div class="stat-card highlight">
+      <div class="stat-value" id="stat-time">—</div>
+      <div class="stat-label">time saved<br/>this week</div>
+    </div>
   </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">CORE FILTERS</div>
+  <div class="filter-list" id="filter-list"></div>
 
   <div class="divider"></div>
 
@@ -47,8 +62,6 @@
     <button id="block-account-btn">Block</button>
   </div>
   <div class="tag-list" id="blocked-accounts-list"></div>
-
-  <div class="divider"></div>
 
   <div class="divider"></div>
 
