@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "LinkedIn Feed Filter",
-  "version": "1.0.0",
-  "description": "Filters low-quality posts from your LinkedIn feed. Not affiliated with LinkedIn.",
+  "version": "1.1.0",
+  "description": "Filters AI posts, selfies, motivational fluff & news regurgitation from your LinkedIn feed. Free & open source. Not affiliated with LinkedIn.",
   "permissions": [
     "storage",
     "activeTab"
